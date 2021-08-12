@@ -1,12 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// Set up new user with...
-// { 
-//     "username": "",
-//     "email": "",
-//     "password": ""
-// }
+
 
 // GET /api/users
 router.get('/', (req, res) => {
