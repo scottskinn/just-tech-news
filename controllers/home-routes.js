@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 
 router.get('/', (req, res) => {
+    // console.log(req.session);
     Post.findAll({
         attributes: [
             'id',
@@ -50,6 +51,15 @@ router.get('/', (req, res) => {
             username: 'test_user'
         }
     });
+});
+
+// route form login
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn, req.session.secret) {
+        res.redirect('/');
+        return;
+    }
+    res.render('login');
 });
 
 module.exports = router;
