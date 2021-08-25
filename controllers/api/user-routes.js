@@ -74,8 +74,13 @@ router.post('/', (req, res) => {
         
             res.json(dbUserData);
         });
-    });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 });
+
 
 // Creates new user
 router.post('/login', (req, res) =>{
@@ -105,21 +110,23 @@ router.post('/login', (req, res) =>{
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
         
-            res.json(dbUserData);
+            res.json({ user: dbUserData, message: 'You are now logged in!' });
         });
 
-        res.json({ user: dbUserData, message: 'You are now logged in!' });
+        
     });  
 });
 
 // logout router
 router.post('/logout', (req, res) => {
     if(req.session.loggedIn) {
+        console.log("++++++++++++", req.session)
         req.session.destroy(() => {
             res.status(204).end();
         });
     }
     else {
+        // console.log(req)
         res.status(404).end();
     }
 });

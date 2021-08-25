@@ -9,10 +9,10 @@ const PORT = process.env.PORT || 3001;
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-const mySecret = process.env.DB_Secret;
+// const mySecret = process.env.DB_Secret;
 
 const sess = {
-  sercet: mySecret,
+  sercet: 'Super secret secret',
   cookie: {},
   resave: true,
   saveUninitialized: true,
@@ -21,7 +21,7 @@ const sess = {
   })
 };
 
-app.use(session({secret: mySecret}, sess));
+app.use(session({secret: 'Super secret secret'}, sess));
 const hbs = exphbs.create({});
 
 // handlebars engine 

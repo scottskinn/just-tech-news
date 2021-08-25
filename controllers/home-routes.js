@@ -39,6 +39,15 @@ router.get('/', (req, res) => {
     });
 });
 
+// route form login
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    res.render('login');
+});
+
 router.get('/', (req, res) => {
     res.render('homepage', {
         id: 1,
@@ -53,13 +62,6 @@ router.get('/', (req, res) => {
     });
 });
 
-// route form login
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn, req.session.secret) {
-        res.redirect('/');
-        return;
-    }
-    res.render('login');
-});
+
 
 module.exports = router;
