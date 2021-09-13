@@ -1,0 +1,34 @@
+<ol class="post-list">
+  {{!-- begin the loop --}}
+  {{#each posts as |post|}} 
+  <li>
+    {{> post-info post}}
+  </li>
+  {{!-- end the loop --}}
+  {{/each}}
+</ol>
+
+{{> post-info post }}
+
+{{!-- form only shows if user is logged in with the if statement --}}
+{{#if loggedIn}}
+<form class="comment-form">
+  <div>
+    <textarea name="comment-body"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">add comment</button>
+    <button type="button" class="upvote-btn">upvote</button>
+  </div>
+</form>
+{{/if}}
+
+<div class="comments">
+{{> comments post.comments}}
+</div>
+
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+<script src="/javascript/upvote.js"></scrip>
+{{/if}}
